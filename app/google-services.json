@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "983106214963",
+    "firebase_url": "https://cafezinho-90dfa.firebaseio.com",
+    "project_id": "cafezinho-90dfa",
+    "storage_bucket": "cafezinho-90dfa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983106214963:android:cc2bb8458ecda51b",
+        "android_client_info": {
+          "package_name": "com.example.android.justjava"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "983106214963-ua03ib9k9lemjb2gj3p8nrhmh4pcv7bq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFooij5w3hpEro8h5FW5sm0RkB2uoqIYw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:orientation="vertical"
+    tools:context="com.example.android.justjava.MainActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:layout_marginBottom="16dp"
+        android:text= "Nome do Produto" />
+
+    <EditText android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="8dp"
+        android:imeOptions="actionSend"
+        android:inputType="text"
+        android:hint="Nome do Produto"
+        android:id="@+id/nome_produto"/>
+
+
+
+    <RadioGroup
+        android:id="@+id/tnopcoes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Tem"
+            android:id="@+id/Tem"
+            android:layout_weight="1"
+            android:checked="true"
+            android:onClick="onRadioButtonClicked"/>
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Nao Tem"
+            android:id="@+id/NaoTem"
+            android:layout_weight="1"
+            android:onClick="onRadioButtonClicked"/>
+    </RadioGroup>
+
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Cadastrar"
+        android:onClick="submitOrder"
+        />
+
+    <Button
+        android:id="@+id/botao_inicial"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Tela Inicial"
+
+        />
+
+
+
+</LinearLayout>

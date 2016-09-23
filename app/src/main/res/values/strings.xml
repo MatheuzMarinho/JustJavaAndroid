@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Just Java</string>
+
+    <string name="ingrediente">INGREDIENTES</string>
+
+    <string name="hintNomeProd">Nome do Produto</string>
+
+    <string name="hintPreco">Preco do Produto</string>
+
+    <string name="hintDesc">Descricao do Produto</string>
+
+    <string name="hintQtd">Quantidade do Produto</string>
+
+    <string name="action_settings">Calma ae</string>
+
+
+</resources>
