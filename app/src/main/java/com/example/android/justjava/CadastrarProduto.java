@@ -35,9 +35,9 @@ public class CadastrarProduto extends Activity {
         if (nome.getText().toString().isEmpty())
             Toast.makeText(CadastrarProduto.this, "Informe o Produto!", Toast.LENGTH_LONG).show();
         else if (preco.getText().toString().isEmpty())
-            Toast.makeText(CadastrarProduto.this, "Informe o Preco!", Toast.LENGTH_LONG).show();
+            Toast.makeText(CadastrarProduto.this, "Informe o Preço!", Toast.LENGTH_LONG).show();
         else if (descricao.getText().toString().isEmpty())
-            Toast.makeText(CadastrarProduto.this, "Informe uma descricao!", Toast.LENGTH_LONG).show();
+            Toast.makeText(CadastrarProduto.this, "Informe uma Descrição!", Toast.LENGTH_LONG).show();
         else if (quantidade.getText().toString().isEmpty())
             Toast.makeText(CadastrarProduto.this, "Informe a Quantidade!", Toast.LENGTH_LONG).show();
         else {
@@ -47,6 +47,10 @@ public class CadastrarProduto extends Activity {
             Bd.inserirDb(produto);
 
             Toast.makeText(CadastrarProduto.this, produto.getNome()+" cadastrado!", Toast.LENGTH_LONG).show();
+            nome.setText("");
+            preco.setText("");
+            descricao.setText("");
+            quantidade.setText("");
 
         }
     }
