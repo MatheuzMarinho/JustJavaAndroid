@@ -60,12 +60,12 @@ public class CardapioFragment extends Fragment {
 
 
         Button mButton = (Button) view.findViewById(R.id.btFinalizarPedido);
+        mButton.setBackgroundColor(Color.parseColor("#4CAF50"));
         mButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 pedido.setItem_pedido(lista_do_pedido);
-
+                pedido.nome_cliente = master.nome_cliente2;
                 finalizar_pedido();
-                master.nome_cliente2 = pedido.nome_cliente;
 
             }
         });
@@ -73,7 +73,6 @@ public class CardapioFragment extends Fragment {
         adapter = new ProdutoAdapter(getContext(), lista_de_produtos);
         listView.setAdapter(adapter);
 
-        inserirNome();
 
         dataBase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -116,38 +115,6 @@ public class CardapioFragment extends Fragment {
 
 
     private AlertDialog alerta;
-
-
-    private void inserirNome() {
-        //LayoutInflater é utilizado para inflar nosso layout em uma view.
-        LayoutInflater li = LayoutInflater.from(getActivity());
-
-        View view = li.inflate(R.layout.nome_cliente,null);
-        nome = (EditText) view.findViewById(R.id.nomePessoa);
-        //definimos para o botão do layout um clickListener
-        view.findViewById(R.id.setNome).setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View arg0) {
-                //exibe um Toast informativo.
-                if (nome.getText().toString().isEmpty())
-                    Toast.makeText(getContext(), "Informe seu nome!", Toast.LENGTH_LONG).show();
-
-                else {
-                    pedido.nome_cliente = nome.getText().toString();
-
-                    //desfaz o alerta.
-                    alerta.dismiss();
-                }
-            }
-        });
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Insira seu nome");
-        builder.setView(view);
-        alerta = builder.create();
-        alerta.show();
-    }
-
 
 
     private void  visualizar_produto(final int posicao) {
