@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingRight="6dp"
+        android:paddingTop="56dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ListView

@@ -18,7 +18,7 @@ public class TelaPrincipal extends AppCompatActivity
 
     NavigationView navigationView = null;
     Toolbar toolbar = null;
-    String nome_cliente2;
+    public String nome_cliente2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +99,7 @@ public class TelaPrincipal extends AppCompatActivity
             fragmentTransaction.commit();
         } else if (id == R.id.nav_meus_pedidos) {
             PedidosFragment fragment = new PedidosFragment();
+
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container,fragment);
             fragmentTransaction.commit();

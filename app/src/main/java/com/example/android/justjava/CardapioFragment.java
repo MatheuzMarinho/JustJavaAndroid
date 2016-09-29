@@ -56,6 +56,8 @@ public class CardapioFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listar_produtos, container,false);
         listView = (ListView) view.findViewById(R.id.listView);
+        final TelaPrincipal master = (TelaPrincipal) getActivity();
+
 
         Button mButton = (Button) view.findViewById(R.id.btFinalizarPedido);
         mButton.setOnClickListener(new OnClickListener() {
@@ -63,7 +65,7 @@ public class CardapioFragment extends Fragment {
                 pedido.setItem_pedido(lista_do_pedido);
 
                 finalizar_pedido();
-
+                master.nome_cliente2 = pedido.nome_cliente;
 
             }
         });

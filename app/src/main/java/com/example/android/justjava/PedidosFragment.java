@@ -49,7 +49,8 @@ public class PedidosFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
+        TelaPrincipal master = (TelaPrincipal) getActivity();
+        nome_cliente = master.nome_cliente2;
         View view = inflater.inflate(R.layout.pedido_cliente, container,false);
         listView = (ListView) view.findViewById(R.id.listViewPedidoCliente);
 
