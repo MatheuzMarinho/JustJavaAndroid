@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/nav_cardapio"
+        android:icon="@drawable/ic_hamburguer"
+        android:title="Cardapio" />
+    <item
+        android:id="@+id/nav_meus_pedidos"
+        android:icon="@drawable/ic_assignment_black_24dp"
+        android:title="Meus Pedidos" />
+    <item
+        android:id="@+id/nav_historico_pedidos"
+        android:icon="@drawable/ic_assignment_return_black_24dp"
+        android:title="Historico de Pedidos" />
+    <item
+        android:id="@+id/nav_cadastrar_produto"
+        android:icon="@drawable/ic_queue_black_24dp"
+        android:title="Cadastrar Produtos" />
+
+    </group>
+
+</menu>

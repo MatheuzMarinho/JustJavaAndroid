@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Just Java</string>
+
+    <string name="ingrediente">INGREDIENTES</string>
+
+    <string name="hintNomeProd">Nome do Produto</string>
+
+    <string name="hintPreco">Preco do Produto</string>
+
+    <string name="hintDesc">Descricao do Produto</string>
+
+    <string name="hintQtd">Quantidade do Produto</string>
+    <string name="title_activity_tela_principal">TelaPrincipal</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>
