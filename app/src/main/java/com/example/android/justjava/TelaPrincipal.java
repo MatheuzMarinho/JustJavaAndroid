@@ -1,6 +1,7 @@
 package com.example.android.justjava;
 
 import android.app.AlertDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,15 +23,19 @@ public class TelaPrincipal extends AppCompatActivity
 
     NavigationView navigationView = null;
     Toolbar toolbar = null;
-    public String nome_cliente2;
+    public static final String cadCliente = "CadastroCliente";
+    public String nome_cliente2= null;
     EditText nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_principal);
-
+        SharedPreferences pref = getSharedPreferences(cadCliente, MODE_PRIVATE);
+        nome_cliente2 = pref.getString("NomeCliente",null);
+        if(nome_cliente2 == null)
         inserirNome();
+
         CardapioFragment fragment = new CardapioFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container,fragment);
@@ -104,7 +109,7 @@ public class TelaPrincipal extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container,fragment);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_meus_pedidos) {
-            PedidosFragment fragment = new PedidosFragment();
+            PedidoClienteFragment fragment = new PedidoClienteFragment();
 
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container,fragment);
@@ -129,6 +134,8 @@ public class TelaPrincipal extends AppCompatActivity
     private AlertDialog alerta;
 
     private void inserirNome() {
+
+
         //LayoutInflater é utilizado para inflar nosso layout em uma view.
         LayoutInflater li = getLayoutInflater();
 
@@ -144,6 +151,11 @@ public class TelaPrincipal extends AppCompatActivity
 
                 else {
                     nome_cliente2 = nome.getText().toString().toUpperCase();
+                    SharedPreferences settings = getSharedPreferences(cadCliente, 0);
+                    SharedPreferences.Editor editor = settings.edit();
+                    editor.putString("NomeCliente",nome_cliente2);
+                    editor.commit();
+
                     Toast.makeText(TelaPrincipal.this, "Seja Bem Vindo "+nome_cliente2, Toast.LENGTH_LONG).show();
                     //desfaz o alerta.
                     alerta.dismiss();

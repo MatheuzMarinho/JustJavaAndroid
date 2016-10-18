@@ -28,12 +28,12 @@ public class ProdutoAdapter extends ArrayAdapter <Produto> {
                     , parent, false);
         }
         // Lookup view for data population
-        TextView tvNome = (TextView) convertView.findViewById(R.id.tvNome);
-       //  TextView tvDescricao = (TextView) convertView.findViewById(R.id.tvDescricao);
+        TextView tvNome = (TextView) convertView.findViewById(R.id.tv_nome);
+       TextView tvPreco = (TextView) convertView.findViewById(R.id.tv_preco);
         // Populate the data into the template view using the data object
         tvNome.setText(produto.nome);
 
-        // tvDescricao.setText(produto.descricao);
+        tvPreco.setText("  Preço R$: "+produto.preco.toString());
         // Return the completed view to render on screen
         return convertView;
     }

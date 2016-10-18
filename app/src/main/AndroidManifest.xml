@@ -19,12 +19,7 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".ListarProduto">
-        </activity>
-        <activity android:name=".CadastrarProduto" />
-        <activity android:name=".ListarPedidos" />
-        <activity android:name=".TelaInicial" />
-        <activity android:name=".PedidoCliente" />
+
 
     </application>
 

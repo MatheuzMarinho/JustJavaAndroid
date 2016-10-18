@@ -41,8 +41,6 @@ public class CardapioFragment extends Fragment {
     private ListView listView;
     private ProdutoAdapter adapter;
     private ProdutoAdapter adapter_pedido;
-    private EditText nome;
-    private Button btn;
     DatabaseReference dataBase = FirebaseDatabase.getInstance().getReference().child("Produtos");
 
 
@@ -91,6 +89,7 @@ public class CardapioFragment extends Fragment {
 
             }
         });
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -181,13 +180,9 @@ public class CardapioFragment extends Fragment {
                 else {
                     PedidosDb.inserirDb(pedido);
 
-
-                    /*
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction() ;
-                    fragmentTransaction.replace(R.id.fragment_container, new PedidosFragment());
+                    fragmentTransaction.replace(R.id.fragment_container, new PedidoClienteFragment());
                     fragmentTransaction.commit();
-
-                    */
 
 
                 }
