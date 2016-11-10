@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/fast_truck_image"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -19,7 +19,17 @@
             </intent-filter>
 
         </activity>
+        <service
+            android:name=".ServicoTeste" >
 
+            <receiver android:name=".BootReciever">
+                <intent-filter >
+                    <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                </intent-filter>
+            </receiver>
+
+
+        </service>
 
     </application>
 

@@ -11,9 +11,9 @@
         android:icon="@drawable/ic_assignment_black_24dp"
         android:title="Meus Pedidos" />
     <item
-        android:id="@+id/nav_historico_pedidos"
+        android:id="@+id/nav_pedido_atual"
         android:icon="@drawable/ic_assignment_return_black_24dp"
-        android:title="Historico de Pedidos" />
+        android:title="Pedido Atual" />
     <item
         android:id="@+id/nav_cadastrar_produto"
         android:icon="@drawable/ic_queue_black_24dp"

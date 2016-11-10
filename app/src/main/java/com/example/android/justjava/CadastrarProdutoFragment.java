@@ -3,6 +3,7 @@ package com.example.android.justjava;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,9 @@ public class CadastrarProdutoFragment extends Fragment {
         descricao = (EditText) view.findViewById(R.id.desc_prod);
         preco = (EditText) view.findViewById(R.id.preco_prod);
         quantidade = (EditText) view.findViewById(R.id.quantidade_prod);
+
+        FloatingActionButton fab = (FloatingActionButton)  getActivity().findViewById(R.id.fab);
+        fab.hide();
 
         Button mButton = (Button) view.findViewById(R.id.btSalvar);
         mButton.setBackgroundColor(Color.parseColor("#4CAF50"));

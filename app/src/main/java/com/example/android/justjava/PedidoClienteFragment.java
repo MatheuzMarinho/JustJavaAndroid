@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -55,7 +56,8 @@ public class PedidoClienteFragment extends Fragment  {
         View view = inflater.inflate(R.layout.pedido_cliente, container,false);
         listView = (ListView) view.findViewById(R.id.listViewPedidoCliente);
 
-
+        FloatingActionButton fab = (FloatingActionButton)  getActivity().findViewById(R.id.fab);
+        fab.hide();
 
         adpter = new PedidoClienteAdapter(getContext(), lista_dos_pedidos);
         listView.setAdapter(adpter);

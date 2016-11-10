@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Just Java</string>
+    <string name="app_name">FasTruck</string>
 
     <string name="ingrediente">INGREDIENTES</string>
 
@@ -10,7 +10,7 @@
     <string name="hintDesc">Descricao do Produto</string>
 
     <string name="hintQtd">Quantidade do Produto</string>
-    <string name="title_activity_tela_principal">TelaPrincipal</string>
+    <string name="title_activity_tela_principal">FasTruck</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

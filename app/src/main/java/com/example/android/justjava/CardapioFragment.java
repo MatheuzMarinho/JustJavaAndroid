@@ -7,8 +7,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import android.view.View.OnClickListener;
 
@@ -35,12 +39,11 @@ import android.view.View.OnClickListener;
  */
 public class CardapioFragment extends Fragment {
     private Produto p = new Produto();
-    private Pedido pedido = new Pedido();
     private ArrayList<Produto> lista_de_produtos= new ArrayList<>();
-    private ArrayList<Produto> lista_do_pedido= new ArrayList<>();
     private ListView listView;
     private ProdutoAdapter adapter;
     private ProdutoAdapter adapter_pedido;
+
     DatabaseReference dataBase = FirebaseDatabase.getInstance().getReference().child("Produtos");
 
 
@@ -55,18 +58,16 @@ public class CardapioFragment extends Fragment {
         View view = inflater.inflate(R.layout.listar_produtos, container,false);
         listView = (ListView) view.findViewById(R.id.listView);
         final TelaPrincipal master = (TelaPrincipal) getActivity();
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle("Cardápio");
 
+        FloatingActionButton fab = (FloatingActionButton)  getActivity().findViewById(R.id.fab);
+        fab.hide();
 
-        Button mButton = (Button) view.findViewById(R.id.btFinalizarPedido);
-        mButton.setBackgroundColor(Color.parseColor("#4CAF50"));
-        mButton.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                pedido.setItem_pedido(lista_do_pedido);
-                pedido.nome_cliente = master.nome_cliente2;
-                finalizar_pedido();
+        final ProdutoSQLadapter BD = new ProdutoSQLadapter(getContext());
 
-            }
-        });
+        // Pegar Lista do BD
+        atualizarBD(BD);
 
         adapter = new ProdutoAdapter(getContext(), lista_de_produtos);
         listView.setAdapter(adapter);
@@ -76,12 +77,12 @@ public class CardapioFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Iterator i = dataSnapshot.getChildren().iterator();
-                p = new Produto();
+                adapter.clear();
                 while (i.hasNext()) {
 
-                    adapter.add(((DataSnapshot)i.next()).getValue(Produto.class));
-
+                    adapter.add((((DataSnapshot)i.next()).getValue(Produto.class)));
                 }
+
             }
 
             @Override
@@ -89,6 +90,7 @@ public class CardapioFragment extends Fragment {
 
             }
         });
+
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -110,13 +112,18 @@ public class CardapioFragment extends Fragment {
 
     }
 
+    private void atualizarBD(ProdutoSQLadapter BD){
+            while(BD.buscarSQLProduto()== null){
 
-
+            }
+            lista_de_produtos = BD.buscarSQLProduto();
+    }
 
     private AlertDialog alerta;
 
 
     private void  visualizar_produto(final int posicao) {
+        final TelaPrincipal master = (TelaPrincipal) getActivity();
         p = lista_de_produtos.get(posicao);
 
 
@@ -137,10 +144,16 @@ public class CardapioFragment extends Fragment {
 
         builder.setPositiveButton("Pedir", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
+                master.pedido_atual.setValor_total(p.getPreco());
+                master.lista_do_pedido_atual.add(p);
 
-                pedido.setValor_total(p.getPreco());
-                lista_do_pedido.add(p);
+
                 Toast.makeText(getContext(), "Produto : "+p.nome+" Adicionado!", Toast.LENGTH_SHORT).show();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction() ;
+                fragmentTransaction.replace(R.id.fragment_container, new PedidoAtualFragment());
+                fragmentTransaction.commit();
+
+
 
             }
         });
@@ -155,54 +168,6 @@ public class CardapioFragment extends Fragment {
         alerta = builder.create();
         //Exibe
         alerta.show();
-    }
-
-    private void finalizar_pedido(){
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
-        //define o titulo
-        builder.setTitle("Seu Pedido. Total: "+pedido.getValor_total()+" Reais");
-
-        LayoutInflater inflater = LayoutInflater.from(getActivity());
-        View view = inflater.inflate(R.layout.finalizar_pedido, null);
-        TextView preco_tv = (TextView) view.findViewById(R.id.tv_preco);
-        ListView listViewPedido = (ListView) view.findViewById(R.id.listViewPedido);
-
-        adapter_pedido = new ProdutoAdapter(getActivity(),lista_do_pedido);
-        listViewPedido.setAdapter(adapter_pedido);
-
-        builder.setView(view);
-        builder.setPositiveButton("Pedir", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface arg0, int arg1) {
-                if(pedido.item_pedido.isEmpty())
-                    Toast.makeText(getContext(),"Por Favor, faça um Pedido", Toast.LENGTH_SHORT).show();
-                else {
-                    PedidosDb.inserirDb(pedido);
-
-                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction() ;
-                    fragmentTransaction.replace(R.id.fragment_container, new PedidoClienteFragment());
-                    fragmentTransaction.commit();
-
-
-                }
-            }
-        });
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface arg0, int arg1) {
-
-            }
-        });
-
-
-
-        //cria o AlertDialog
-        alerta = builder.create();
-        //Exibe
-        alerta.show();
-
-
-
     }
 
 

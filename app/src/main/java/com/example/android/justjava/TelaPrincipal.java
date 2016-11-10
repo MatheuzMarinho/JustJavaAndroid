@@ -1,6 +1,7 @@
 package com.example.android.justjava;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +19,8 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class TelaPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -25,16 +28,26 @@ public class TelaPrincipal extends AppCompatActivity
     Toolbar toolbar = null;
     public static final String cadCliente = "CadastroCliente";
     public String nome_cliente2= null;
+    public Pedido pedido_atual = new Pedido();
+    public ArrayList<Produto> lista_do_pedido_atual= new ArrayList<>();
     EditText nome;
+    private CharSequence mTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_principal);
+
+        Intent intent = new Intent(getApplication(),ServicoTeste.class);
+        startService(intent);
+
         SharedPreferences pref = getSharedPreferences(cadCliente, MODE_PRIVATE);
         nome_cliente2 = pref.getString("NomeCliente",null);
         if(nome_cliente2 == null)
         inserirNome();
+        mTitle = "Cardápio";
+
 
         CardapioFragment fragment = new CardapioFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -44,14 +57,10 @@ public class TelaPrincipal extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        fab.hide();
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -59,6 +68,7 @@ public class TelaPrincipal extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+        getSupportActionBar().setTitle(mTitle);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
@@ -75,27 +85,7 @@ public class TelaPrincipal extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.tela_principal, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -108,14 +98,26 @@ public class TelaPrincipal extends AppCompatActivity
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container,fragment);
             fragmentTransaction.commit();
+            mTitle="Cardápio";
+            getSupportActionBar().setTitle(mTitle);
         } else if (id == R.id.nav_meus_pedidos) {
             PedidoClienteFragment fragment = new PedidoClienteFragment();
 
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container,fragment);
             fragmentTransaction.commit();
+            mTitle="Meus Pedidos";
+            getSupportActionBar().setTitle(mTitle);
 
-        } else if (id == R.id.nav_historico_pedidos) {
+        } else if (id == R.id.nav_pedido_atual) {
+
+            PedidoAtualFragment fragment = new PedidoAtualFragment();
+
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container,fragment);
+            fragmentTransaction.commit();
+            mTitle="Pedido Atual";
+            getSupportActionBar().setTitle(mTitle);
 
         } else if (id == R.id.nav_cadastrar_produto) {
             CadastrarProdutoFragment fragment = new CadastrarProdutoFragment();
@@ -123,6 +125,8 @@ public class TelaPrincipal extends AppCompatActivity
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container,fragment);
             fragmentTransaction.commit();
+            mTitle="Cadastrar Produto";
+            getSupportActionBar().setTitle(mTitle);
 
         }
 

@@ -4,23 +4,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CadastrarProduto">
+    >
 
-
-
-
-
-        <Button
-            android:layout_marginTop="70dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Finalizar Pedido"
-            android:id="@+id/btFinalizarPedido"
-            android:layout_gravity="center_horizontal"
-            android:onClick="clickFinalizarPedido"/>
 
 
     <ListView
+        android:paddingTop="56dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listView" />
