@@ -27,7 +27,6 @@ import java.util.ArrayList;
 public class PedidoAtualFragment extends Fragment {
 
     private ListView listView;
-    private ArrayList<Produto> lista_de_produtos= new ArrayList<>();
     private ProdutoAdapter adapter;
 
     public PedidoAtualFragment() {
