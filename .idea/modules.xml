@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/JustJavaAndroid-teste.iml" filepath="$PROJECT_DIR$/JustJavaAndroid-teste.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JustJavaAndroid.iml" filepath="$PROJECT_DIR$/JustJavaAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

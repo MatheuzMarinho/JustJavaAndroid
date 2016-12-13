@@ -19,6 +19,11 @@
         android:icon="@drawable/ic_queue_black_24dp"
         android:title="Cadastrar Produtos" />
 
+        <item
+            android:id="@+id/nav_cozinha"
+            android:icon="@drawable/ic_restaurant_menu_black_24dp"
+            android:title="Pedidos Cozinha" />
+
     </group>
 
 </menu>
